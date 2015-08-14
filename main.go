@@ -22,7 +22,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, err.Error())
 	}
 
-	fmt.Println(posts)
+	fmt.Println(posts)//print
 
 	t.ExecuteTemplate(w, "index", posts)
 }
