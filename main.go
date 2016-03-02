@@ -24,6 +24,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 
 	fmt.Println(posts) //print
 	fmt.Println(posts) //asdasdasdasdasdadsasd
+	// added 3th string afert println =)
 
 	t.ExecuteTemplate(w, "index", posts)
 }
