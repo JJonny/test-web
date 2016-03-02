@@ -1,11 +1,11 @@
 package main
 
 import (
+	"crypto/rand"
 	"fmt"
 	"html/template"
-	"net/http"	
 	"mygolang/models"
-	"crypto/rand"
+	"net/http"
 )
 
 var posts map[string]*models.Post
@@ -22,7 +22,8 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, err.Error())
 	}
 
-	fmt.Println(posts)//print
+	fmt.Println(posts) //print
+	fmt.Println(posts) //asdasdasdasdasdadsasd
 
 	t.ExecuteTemplate(w, "index", posts)
 }
@@ -57,7 +58,7 @@ func savePostHandler(w http.ResponseWriter, r *http.Request) {
 	content := r.FormValue("content")
 
 	var post *models.Post
-	if id != ""	{
+	if id != "" {
 		post = posts[id]
 		post.Title = title
 		post.Content = content
@@ -72,7 +73,7 @@ func savePostHandler(w http.ResponseWriter, r *http.Request) {
 
 func deleteHandler(w http.ResponseWriter, r *http.Request) {
 	id := r.FormValue("id")
-	
+
 	if id == "" {
 		http.NotFound(w, r)
 	}
@@ -93,8 +94,6 @@ func main() {
 	http.HandleFunc("/edit", editHandler)
 	http.HandleFunc("/delete", deleteHandler)
 	http.HandleFunc("/SavePost", savePostHandler)
-	
 
 	http.ListenAndServe(":3000", nil)
 }
-
